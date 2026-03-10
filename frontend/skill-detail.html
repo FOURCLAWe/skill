@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>技能详情 - SkillHub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .tab-active { border-bottom: 3px solid #7c3aed; color: #7c3aed; font-weight: 600; }
+        .skill-badge { display: inline-block; padding: 6px 16px; border-radius: 20px; font-size: 14px; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- 导航栏 -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center space-x-8">
+                    <a href="index.html" class="text-2xl font-bold gradient-bg bg-clip-text text-transparent">SkillHub</a>
+                    <div class="hidden md:flex space-x-6">
+                        <a href="index.html#home" class="text-gray-700 hover:text-purple-600 font-medium">首页</a>
+                        <a href="index.html#categories" class="text-gray-700 hover:text-purple-600 font-medium">分类</a>
+                        <a href="index.html#skills" class="text-gray-700 hover:text-purple-600 font-medium">技能</a>
+                        <a href="index.html#community" class="text-gray-700 hover:text-purple-600 font-medium">社区</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <input type="text" placeholder="搜索技能..." class="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 w-64">
+                    <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">登录</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 面包屑导航 -->
+    <div class="bg-white border-b">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <div class="flex items-center text-sm text-gray-600">
+                <a href="index.html" class="hover:text-purple-600">首页</a>
+                <span class="mx-2">/</span>
+                <a href="#" class="hover:text-purple-600">编程开发</a>
+                <span class="mx-2">/</span>
+                <span class="text-gray-900">React 全栈开发实战</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主要内容 -->
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- 左侧主内容 -->
+            <div class="lg:col-span-2">
+                <!-- 技能头部 -->
+                <div class="bg-white rounded-xl shadow-md p-8 mb-6">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="flex-1">
+                            <h1 class="text-3xl font-bold mb-4">React 全栈开发实战</h1>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="skill-badge bg-purple-100 text-purple-600">React</span>
+                                <span class="skill-badge bg-blue-100 text-blue-600">TypeScript</span>
+                                <span class="skill-badge bg-green-100 text-green-600">Redux</span>
+                                <span class="skill-badge bg-yellow-100 text-yellow-600">Node.js</span>
+                            </div>
+                            <div class="flex items-center space-x-6 text-gray-600">
+                                <div class="flex items-center">
+                                    <span class="text-yellow-500 mr-1">⭐</span>
+                                    <span class="font-bold text-gray-900">4.8</span>
+                                    <span class="ml-1">(234 评价)</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="mr-1">👁️</span>
+                                    <span>12,345 浏览</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="mr-1">👍</span>
+                                    <span>1,234 点赞</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 transition font-semibold">
+                            开始学习
+                        </button>
+                    </div>
+                    
+                    <!-- 作者信息 -->
+                    <div class="flex items-center pt-6 border-t">
+                        <div class="w-16 h-16 bg-purple-600 rounded-full mr-4"></div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-lg">张三</h3>
+                            <p class="text-gray-600">资深全栈开发工程师 · 10年经验</p>
+                            <p class="text-sm text-gray-500 mt-1">已发布 23 个技能 · 12,456 学员</p>
+                        </div>
+                        <button class="bg-white border-2 border-purple-600 text-purple-600 px-6 py-2 rounded-lg hover:bg-purple-50 transition font-semibold">
+                            + 关注
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tab 导航 -->
+                <div class="bg-white rounded-xl shadow-md mb-6">
+                    <div class="flex border-b">
+                        <button class="tab-active px-8 py-4 transition" onclick="switchTab('overview')">课程概览</button>
+                        <button class="px-8 py-4 text-gray-600 hover:text-purple-600 transition" onclick="switchTab('content')">课程内容</button>
+                        <button class="px-8 py-4 text-gray-600 hover:text-purple-600 transition" onclick="switchTab('reviews')">学员评价</button>
+                        <button class="px-8 py-4 text-gray-600 hover:text-purple-600 transition" onclick="switchTab('qa')">问答</button>
+                    </div>
+                    
+                    <!-- Tab 内容 -->
+                    <div class="p-8">
+                        <div id="tab-overview">
+                            <h2 class="text-2xl font-bold mb-4">课程简介</h2>
+                            <p class="text-gray-700 leading-relaxed mb-6">
+                                本课程将带你从零开始学习 React 全栈开发，涵盖 React 核心概念、Hooks、状态管理、TypeScript 集成、
+                                后端 API 开发、数据库设计等全栈技术栈。通过实战项目，你将掌握现代 Web 开发的完整流程。
+                            </p>
+                            
+                            <h3 class="text-xl font-bold mb-3">你将学到</h3>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span>React 核心概念和 Hooks 的深入理解</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span>使用 TypeScript 编写类型安全的代码</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span>Redux 状态管理和中间件使用</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span>Node.js + Express 后端 API 开发</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span>MongoDB 数据库设计和操作</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span>完整的全栈项目实战经验</span>
+                                </li>
+                            </ul>
+
+                            <h3 class="text-xl font-bold mb-3">适合人群</h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <span class="text-purple-500 mr-2">•</span>
+                                    <span>有 JavaScript 基础的前端开发者</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-purple-500 mr-2">•</span>
+                                    <span>想要学习全栈开发的工程师</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-purple-500 mr-2">•</span>
+                                    <span>希望提升 React 技能的开发者</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 评论区 -->
+                <div class="bg-white rounded-xl shadow-md p-8">
+                    <h2 class="text-2xl font-bold mb-6">学员评价 (234)</h2>
+                    
+                    <!-- 评分统计 -->
+                    <div class="flex items-center mb-8 pb-8 border-b">
+                        <div class="text-center mr-12">
+                            <div class="text-5xl font-bold text-purple-600 mb-2">4.8</div>
+                            <div class="flex text-yellow-500 text-xl mb-2">
+                                ⭐⭐⭐⭐⭐
+                            </div>
+                            <div class="text-gray-600">234 评价</div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center mb-2">
+                                <span class="w-12 text-sm">5星</span>
+                                <div class="flex-1 h-2 bg-gray-200 rounded-full mx-3">
+                                    <div class="h-2 bg-yellow-500 rounded-full" style="width: 85%"></div>
+                                </div>
+                                <span class="w-12 text-sm text-right">198</span>
+                            </div>
+                            <div class="flex items-center mb-2">
+                                <span class="w-12 text-sm">4星</span>
+                                <div class="flex-1 h-2 bg-gray-200 rounded-full mx-3">
+                                    <div class="h-2 bg-yellow-500 rounded-full" style="width: 10%"></div>
+                                </div>
+                                <span class="w-12 text-sm text-right">24</span>
+                            </div>
+                            <div class="flex items-center mb-2">
+                                <span class="w-12 text-sm">3星</span>
+                                <div class="flex-1 h-2 bg-gray-200 rounded-full mx-3">
+                                    <div class="h-2 bg-yellow-500 rounded-full" style="width: 3%"></div>
+                                </div>
+                                <span class="w-12 text-sm text-right">8</span>
+                            </div>
+                            <div class="flex items-center mb-2">
+                                <span class="w-12 text-sm">2星</span>
+                                <div class="flex-1 h-2 bg-gray-200 rounded-full mx-3">
+                                    <div class="h-2 bg-gray-300 rounded-full" style="width: 1%"></div>
+                                </div>
+                                <span class="w-12 text-sm text-right">3</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-12 text-sm">1星</span>
+                                <div class="flex-1 h-2 bg-gray-200 rounded-full mx-3">
+                                    <div class="h-2 bg-gray-300 rounded-full" style="width: 0.5%"></div>
+                                </div>
+                                <span class="w-12 text-sm text-right">1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 评论列表 -->
+                    <div class="space-y-6">
+                        <div class="border-b pb-6">
+                            <div class="flex items-start mb-3">
+                                <div class="w-12 h-12 bg-blue-600 rounded-full mr-4"></div>
+                                <div class="flex-1">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div>
+                                            <h4 class="font-bold">李明</h4>
+                                            <div class="flex items-center text-sm text-gray-500">
+                                                <span class="text-yellow-500 mr-1">⭐⭐⭐⭐⭐</span>
+                                                <span>2天前</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-700 mb-3">
+                                        非常棒的课程！老师讲解清晰，实战项目很有价值。学完之后对 React 的理解提升了一个层次。
+                                        特别是 Hooks 和状态管理部分，讲得非常透彻。强烈推荐！
+                                    </p>
+                                    <div class="flex space-x-4 text-sm text-gray-500">
+                                        <button class="hover:text-purple-600">👍 42</button>
+                                        <button class="hover:text-purple-600">💬 回复</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-b pb-6">
+                            <div class="flex items-start mb-3">
+                                <div class="w-12 h-12 bg-green-600 rounded-full mr-4"></div>
+                                <div class="flex-1">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div>
+                                            <h4 class="font-bold">王芳</h4>
+                                            <div class="flex items-center text-sm text-gray-500">
+                                                <span class="text-yellow-500 mr-1">⭐⭐⭐⭐⭐</span>
+                                                <span>5天前</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-700 mb-3">
+                                        作为一个前端新手，这门课程让我快速入门了 React。老师很耐心，代码示例也很实用。
+                                        现在已经能独立开发小项目了，感谢！
+                                    </p>
+                                    <div class="flex space-x-4 text-sm text-gray-500">
+                                        <button class="hover:text-purple-600">👍 28</button>
+                                        <button class="hover:text-purple-600">💬 回复</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="w-full mt-6 py-3 border-2 border-gray-300 rounded-lg hover:border-purple-600 hover:text-purple-600 transition font-semibold">
+                        查看全部评价
+                    </button>
+                </div>
+            </div>
+
+            <!-- 右侧边栏 -->
+            <div class="lg:col-span-1">
+                <!-- 课程信息卡片 -->
+                <div class="bg-white rounded-xl shadow-md p-6 mb-6 sticky top-24">
+                    <div class="aspect-video bg-gradient-to-r from-purple-400 to-pink-400 rounded-lg mb-4"></div>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">难度等级</span>
+                            <span class="font-semibold text-purple-600">中级</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">课程时长</span>
+                            <span class="font-semibold">24小时</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">章节数量</span>
+                            <span class="font-semibold">12章 · 86节</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">学习人数</span>
+                            <span class="font-semibold">12,456人</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">更新时间</span>
+                            <span class="font-semibold">2026-03-01</span>
+                        </div>
+                    </div>
+
+                    <button class="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition font-semibold mb-3">
+                        立即学习
+                    </button>
+                    <button class="w-full bg-white border-2 border-purple-600 text-purple-600 py-3 rounded-lg hover:bg-purple-50 transition font-semibold">
+                        收藏课程
+                    </button>
+                </div>
+
+                <!-- 相关技能 -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h3 class="font-bold text-lg mb-4">相关技能推荐</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3 pb-4 border-b cursor-pointer hover:bg-gray-50 p-2 rounded">
+                            <div class="w-16 h-16 bg-gradient-to-r from-blue-400 to-cyan-400 rounded flex-shrink-0"></div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="font-semibold text-sm mb-1 truncate">Vue 3 实战开发</h4>
+                                <div class="flex items-center text-xs text-gray-500">
+                                    <span class="text-yellow-500 mr-1">⭐</span>
+                                    <span>4.7</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3 pb-4 border-b cursor-pointer hover:bg-gray-50 p-2 rounded">
+                            <div class="w-16 h-16 bg-gradient-to-r from-green-400 to-teal-400 rounded flex-shrink-0"></div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="font-semibold text-sm mb-1 truncate">Node.js 后端开发</h4>
+                                <div class="flex items-center text-xs text-gray-500">
+                                    <span class="text-yellow-500 mr-1">⭐</span>
+                                    <span>4.9</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3 cursor-pointer hover:bg-gray-50 p-2 rounded">
+                            <div class="w-16 h-16 bg-gradient-to-r from-pink-400 to-red-400 rounded flex-shrink-0"></div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="font-semibold text-sm mb-1 truncate">TypeScript 进阶</h4>
+                                <div class="flex items-center text-xs text-gray-500">
+                                    <span class="text-yellow-500 mr-1">⭐</span>
+                                    <span>4.8</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="font-bold text-xl mb-4">SkillHub</h4>
+                    <p class="text-gray-400">连接全球技能爱好者</p>
+                </div>
+                <div>
+                    <h5 class="font-bold mb-4">关于我们</h5>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">公司介绍</a></li>
+                        <li><a href="#" class="hover:text-white">加入我们</a></li>
+                        <li><a href="#" class="hover:text-white">联系方式</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold mb-4">帮助中心</h5>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">使用指南</a></li>
+                        <li><a href="#" class="hover:text-white">常见问题</a></li>
+                        <li><a href="#" class="hover:text-white">服务条款</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold mb-4">关注我们</h5>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition">微</a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition">抖</a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition">B</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2026 SkillHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function switchTab(tabName) {
+            // Tab 切换逻辑（简化版）
+            const tabs = document.querySelectorAll('button[onclick^="switchTab"]');
+            tabs.forEach(tab => {
+                tab.classList.remove('tab-active', 'border-b-3', 'border-purple-600');
+                tab.classList.add('text-gray-600');
+            });
+            event.target.classList.add('tab-active');
+            event.target.classList.remove('text-gray-600');
+        }
+    </script>
+</body>
+</html>
